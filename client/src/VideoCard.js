@@ -15,7 +15,7 @@ function VideoCard ({video, setWatch}){
         <div className="VideoCard" onClick={click}>
             <h3>{video.title}</h3>
             <iframe width="280" height="180" src={`${video.src}`}></iframe>
-            <h3>{`By: ${video.channel.title}`}</h3>
+            {/* <h3>{`By: ${video.channel.title}`}</h3> */}
         </div>
     )
 }

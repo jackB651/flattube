@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
     private
 
     def cparams
-        params.permit(:likes, :dislikes, :statement, :user_id, :video_id)
+        params.permit(:statement, :user_id, :video_id)
     end
 
 end

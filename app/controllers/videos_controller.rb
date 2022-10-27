@@ -1,6 +1,5 @@
 class VideosController < ApplicationController
     skip_before_action :authorize
-    before_action :current_video, only: [:select, :return]
 
     def index
         render json: Video.all, status: :ok
@@ -30,7 +29,7 @@ class VideosController < ApplicationController
     private
 
     def vparams
-        params.permit(:src,:title,:description,:likes,:dislikes,:channel_id,:number_of_views)
+        params.permit(:user_id,:video_id,:like?,:dislike?)
     end
 
 end

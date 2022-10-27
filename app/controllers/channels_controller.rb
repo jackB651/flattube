@@ -27,7 +27,7 @@ class ChannelsController < ApplicationController
     private
 
     def cparams
-        params.permit(:title, :number_of_subscribers, :user_id)
+        params.permit(:title,:user_id)
     end
 
 end

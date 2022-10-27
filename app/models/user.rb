@@ -3,7 +3,9 @@ class User < ApplicationRecord
     has_many :subscriptions
     has_many :comments
     has_one :channel
-    # has_many :likes
+    has_many :likes
+    has_many :dislikes
+    has_many :videos, through: :likes
     # has_many :channels, through: :subscriptions
 
     validates :username, presence: true, uniqueness: true

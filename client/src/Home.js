@@ -5,18 +5,33 @@ function Home({videos, channelArray, setWatch}){
 
     const [search, setSearch ] = useState("")
     const [videoArray, setVideoArray] = useState([])
-    const [filterChannel, setFilterChannel] = useState(null)
+    const [Channelfilter, setChannelFilter] = useState(null)
+    const [channelId, setChannelId] = useState('')
 
-        function handleClick(){}
+        function handleClick(id){
+            if (id === channelId){
+                setChannelId('')
+            } else {
+                setChannelId(id)
+            }
+        }
 
-       const listChannels = channelArray.map((channel) =>
-         <div key={channel.id} onClick={handleClick}>
+        const channelVids = videos.filter((video)=>{
+            if (channelId === ""){
+                return video}
+            else if(video.channel.id === channelId){ 
+                  return video
+                }
+        })
+
+       const listChannels = channelArray.map((channel) =>{
+         return(<div key={channel.id} onClick={()=>handleClick(channel.id)}>
          <p>{channel.title}</p>
-         <p>{channel.number_of_subscribers}</p>
-        </div>);
+         <p>{channel.subscriptions.length}</p>
+        </div>)});
               
-       const listVids = videos.filter((val)=>{
-           if (search == ""){
+       const listVids = channelVids.filter((val)=>{
+           if (search === ""){
              return val}
            else if (val.title.toLowerCase().includes(search.toLowerCase())){
              return val}

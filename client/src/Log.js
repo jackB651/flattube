@@ -19,7 +19,7 @@ function Log({handleclick, user, setUser}){
             setUser(data);
             // if (data.errors) setErrors(Object.entries(data.errors))
         })
-        .catch(error=>{alert(error)})
+        // .catch(error=>{setErrors(error)})
         setUsername("")
         setPassword("")
         history.push("/home")
@@ -32,7 +32,7 @@ function Log({handleclick, user, setUser}){
                     <input type="password" id="password" name="password" placeholder="Password" value={password} onChange={(e)=>{setPassword(e.target.value)}}/>
             </form>
             <button type="submit" form="loginform" value="Submit">Log in</button>
-            {errors?errors.map(e=><div>{e[0]+': '+e[1]}</div>):null}
+            {errors ? errors.map(e=><div>{e[0]+': '+e[1]}</div>) : null}
             <p>New? Click here to <a href="" onClick={handleclick}>Create Account</a>.</p>
         </div>
     )

@@ -25,7 +25,7 @@ function NewAccount({handleclick, user, setUser}){
                 fetch("/channels",{
                     method: "POST",
                     headers:{"Content-Type":"Application/json"},
-                    body: JSON.stringify({title: channelName, number_of_subscribers: 0, user_id: user.id})
+                    body: JSON.stringify({title: channelName, user_id: user.id})
                 })
                 .then()
                 .then()

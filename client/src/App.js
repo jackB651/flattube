@@ -19,7 +19,8 @@ function App() {
   useEffect(()=>{
     fetch("/me")
     .then(r=>r.json())
-    .then(data=>setUser(data))
+    .then(data=>setUser(data));
+    // console.log(user)
   },[])
 
   useEffect(() => {

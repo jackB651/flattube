@@ -1,6 +1,7 @@
 class ChannelSerializer < ActiveModel::Serializer
-  attributes :id, :title, :number_of_subscribers, :owner
+  attributes :id, :title, :owner
   has_many :videos
+  has_many :subscriptions
 
   def owner 
     object.user.username
