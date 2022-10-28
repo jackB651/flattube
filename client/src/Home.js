@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import VideoCard from "./VideoCard";
 
 function Home({videos, channelArray, setWatch}){
@@ -25,9 +25,9 @@ function Home({videos, channelArray, setWatch}){
         })
 
        const listChannels = channelArray.map((channel) =>{
-         return(<div key={channel.id} onClick={()=>handleClick(channel.id)}>
+         return(<div className="channel-select" key={channel.id} onClick={()=>handleClick(channel.id)}>
          <p>{channel.title}</p>
-         <p>{channel.subscriptions.length}</p>
+         <p>{`subs:${channel.subscriptions.length}`}</p>
         </div>)});
               
        const listVids = channelVids.filter((val)=>{
@@ -44,16 +44,24 @@ function Home({videos, channelArray, setWatch}){
 
     return(
         <div>
-            <input 
-                placeholder="Search..."
-                onChange={handleSearch}
-            />
-            <div>
-                {listVids}
+            <div id="search-outer">
+              <div id="searchbar">
+                <input 
+                  placeholder="Search..."
+                  onChange={handleSearch}
+                />
+              </div>
             </div>
-            <div>
-                <h2>virticle channel selector</h2>
-                {listChannels}
+            <div id="grid-container">
+              <div id="child-2">
+                <h2>Channels</h2>
+                  <div id="channelsearch">
+                   {listChannels}
+                  </div>
+              </div>  
+              <div id="child-1">  
+                {listVids}
+              </div>
             </div>
         </div>
     )

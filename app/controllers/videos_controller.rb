@@ -29,7 +29,7 @@ class VideosController < ApplicationController
     private
 
     def vparams
-        params.permit(:user_id,:video_id,:like?,:dislike?)
+        params.permit(:src, :title, :description, :channel_id)
     end
 
 end

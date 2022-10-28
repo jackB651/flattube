@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import Comments from "./Comments";
 
 function VideoPage({watch, user}){
@@ -14,7 +15,7 @@ function VideoPage({watch, user}){
     const [numberOfLikes, setNumberOfLikes] = useState(0)
     const [numberOfDislikes, setNumberOfDislikes] = useState(0)
 
-
+    const history = useHistory
 
     useEffect(()=>{
         fetch(`/channels/${watch.channel.id}`)
@@ -26,29 +27,23 @@ function VideoPage({watch, user}){
         fetch("/likes")
         .then(r=>r.json())
         .then(r=>{
-            setLikesArray(r.find((like)=>{
-            return(like.video.id === watch.id && like.user.id === user.id)
-        }));
+            likesArray.push(r.find((like)=>like.video.id === watch.id && like.user.id === user.id));
             setNumberOfLikes(r.length);
         if (likesArray.length>0) {
             setUpVote(true)
         }
     })
     },[])
-
     useEffect(()=>{
         fetch("/subscriptions")
         .then(r=>r.json())
         .then(r=>{
-            setSubscriptionsArray(r.find((subscription)=>{
-            return(subscription.video.id === watch.id && subscription.user.id === user.id)
-        }));
+            subscriptionsArray.push(r.find((subscription)=>subscription.video.id === watch.id && subscription.user.id === user.id));
         if (subscriptionsArray.length>0) {
             setSubscribing(true)
         }
     })
     },[])
-
     useEffect(()=>{
         fetch("/dislikes")
         .then(r=>r.json())
@@ -136,20 +131,22 @@ function VideoPage({watch, user}){
         fetch("/comments",{
             method: "POST",
             headers:{"Content-Type":"Application/json"},
-            body: JSON.stringify({description, user_id: user.id, video_id: watch.id})
+            body: JSON.stringify({statement: description, user_id: user.id, video_id: watch.id})
             })
             .then(r=>r.json())
             setDescription("")
+            history.push('/home')
     }
 
     return(
         <div>
-            <h2>{watch.title}</h2>
-            <iframe width="710" height="400" src={watch.src}></iframe><br></br>
-            <p>Description: {watch.description}</p>
-            <div><p>{`likes: ${numberOfLikes}`}</p><p>{`dislikes: ${numberOfDislikes}`}</p></div>
-            <p>{watch.channel.title}</p>
-            <p>{numberOfSubs} subs</p>
+            <div id="video-display">
+              <h2>{watch.title}</h2>
+              <iframe width="710" height="400" src={`${watch.src}?modestbranding=0`}></iframe><br></br>
+              <p>Description: {watch.description}</p>
+            </div>
+            <div id="channel"><div id="title">{watch.channel.title}</div><div id="subs">{numberOfSubs} subs</div></div>
+            <div className="video-response"><div id="likes">{`likes: ${numberOfLikes}`}</div><div id="dislikes">{`dislikes: ${numberOfDislikes}`}</div></div>
             {subscribing ? <button onClick={subscribe}>Unsubscribe</button> : <button onClick={subscribe}>Subscribe</button>}
             {upVote ? <button onClick={like}>Unlike</button> : <button onClick={like}>Like</button>}
             {downVote ? <button onClick={dislike}>Un-dislike</button> : <button onClick={dislike}>Dislike</button>}<br></br>

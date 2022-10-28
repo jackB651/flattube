@@ -1,6 +1,8 @@
 .App {
   text-align: center;
-  background-color: #9098ac;
+  background-color: #d0d8e0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  height: 100%;
 }
 
 .App-logo {
@@ -26,7 +28,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #beeffd;
 }
 
 @keyframes App-logo-spin {
@@ -37,3 +39,107 @@
     transform: rotate(360deg);
   }
 }
+
+div.flex-box {
+  display: flex;
+  flex-direction: row;
+  color: red;
+  background-color: #c3cadd;
+}
+
+#switchboard {
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#video-display {
+  border: #882b0e;
+}
+
+button {
+  color: rgb(114, 7, 7);
+  border-radius: 100px
+}
+
+#loging {
+  padding: 20px;
+  position: absolute;
+  right: 0px;
+}
+
+iframe {
+  border-radius: 10%;
+}
+
+.VideoCard {
+  border: 1px solid black;
+  border-radius: 100px
+}
+
+.video-response {
+  display: flex;
+  flex-direction: row;
+  padding-left: 600px;
+}
+
+#video-display {
+  border: #07090e;
+}
+
+#dislikes {
+  padding-left: 25px;
+}
+
+#channel {
+  display: flex;
+  flex-direction: row;
+  padding-left: 600px;
+}
+
+#subs {
+  padding-left: 20px;
+}
+
+#grid-container {
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  grid-gap: 20px; 
+  border: 3px solid rgb(114, 7, 7); 
+  width: 90%; 
+  margin-left: 50px;
+  border-radius: 100px
+}
+
+#searchbar {
+  border: 3px solid black; 
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #e6c8c8;
+  border-radius: 7px
+}
+
+#child-2 {
+  text-align: left;
+  padding-left: 50px;
+  background-color: #d7e9ee;
+  border-radius: 100px
+}
+
+#child-1 {
+  width: 1000px;
+}
+
+#search-outer {
+  border: #911818;
+}
+
+.channel-select {
+  border: #07090e;
+}
+
+.my-comments {
+  margin-bottom: 10px;
+}
+
